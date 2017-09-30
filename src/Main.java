@@ -54,9 +54,6 @@ public class Main extends javax.swing.JFrame {
         //versionLabel.setText(Bootstrap.APP_NAME + " " + Bootstrap.APP_VERSION);
         //authorLabel.setText(Bootstrap.APP_AUTHOR);
         
-        //ResourceBundle bundle = ResourceBundle.getBundle("MessageBundle");
-        //System.out.println("Message in " + Locale.getDefault() + ":" + bundle.getString("greeting"));                
-        
         this.setTitle(Bootstrap.APP_NAME + " " + Bootstrap.APP_VERSION);
         HelperUI.centerJFrame(this);
         

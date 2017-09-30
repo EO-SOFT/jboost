@@ -35,7 +35,7 @@ public class HelperUI {
 
     public static String APP_NAME = "Jit Point of sale";
     public static String APP_VERSION = "1.0";
-    public static Image APP_ICON_PATH = new Image("images/icon.png");
+    //public static Image APP_ICON_PATH = new Image("icon.png");
 
     public void maximizeScene(Scene scene, Stage stage) {
         Screen screen = Screen.getPrimary();
