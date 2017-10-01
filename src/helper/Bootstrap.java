@@ -174,7 +174,7 @@ public class Bootstrap {
         /// read from file
         InputStream input = null;
         try {
-            input = new FileInputStream(".\\config.properties");
+            input = new FileInputStream(".\\src\\config.properties");
             // load a properties file
             APP_PROP.load(input);
             // get the property value and print it out

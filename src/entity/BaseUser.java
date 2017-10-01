@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Set;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,7 +14,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -74,48 +72,48 @@ public class BaseUser extends BaseEntity {
     private String gender; // male or female
 
     @Column(name = "active")
-    private int active;
+    private Boolean active;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
-    private Set<SysGroup> groups = new HashSet<SysGroup>(0);
+    private Set<BaseGroup> groups = new HashSet<BaseGroup>(0);
 
     @Transient
-    private Set<SysEntityPermission> entityPermissions;
+    private Set<BaseEntityPermission> entityPermissions;
 
-    public Set<SysEntityPermission> getEntityPermissions() {
+    public Set<BaseEntityPermission> getEntityPermissions() {
         return entityPermissions;
     }
 
-    public void setEntityPermissions(Set<SysEntityPermission> entityPermissions) {
+    public void setEntityPermissions(Set<BaseEntityPermission> entityPermissions) {
         this.entityPermissions = entityPermissions;
     }
 
     @Transient
-    private Set<SysView> viewPermissions;
+    private Set<BaseView> viewPermissions;
 
-    public Set<SysView> getViewPermissions() {
+    public Set<BaseView> getViewPermissions() {
         return viewPermissions;
     }
 
-    public void setViewPermissions(Set<SysView> viewPermissions) {
+    public void setViewPermissions(Set<BaseView> viewPermissions) {
         this.viewPermissions = viewPermissions;
     }
 
     @Transient
-    private Set<SysMenu> menuPermissions;
+    private Set<BaseMenu> menuPermissions;
 
-    public Set<SysMenu> getMenuPermissions() {
+    public Set<BaseMenu> getMenuPermissions() {
         return menuPermissions;
     }
 
-    public void setMenuPermissions(Set<SysMenu> menuPermissions) {
+    public void setMenuPermissions(Set<BaseMenu> menuPermissions) {
         this.menuPermissions = menuPermissions;
     }
 
     public BaseUser() {
     }
 
-    public BaseUser(String firstName, String lastName, String login, Date loginTime, String password, int active) {
+    public BaseUser(String firstName, String lastName, String login, Date loginTime, String password, Boolean active) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
@@ -130,7 +128,7 @@ public class BaseUser extends BaseEntity {
      * @param uid User ID
      * @return Set of access right
      */
-    public Set<SysEntityPermission> loadEntityPermissions(int uid) {
+    public Set<BaseEntityPermission> loadEntityPermissions(int uid) {
         DBInstance.startSession();
         SQLQuery sqlQuery = DBInstance.getSession().createSQLQuery(""
                 + "SELECT entity, MAX(c) AS \"C\", MAX(r) AS \"R\", MAX(u) AS \"U\", MAX(d) AS \"D\" "
@@ -147,9 +145,9 @@ public class BaseUser extends BaseEntity {
 
         DBInstance.getSession().getTransaction().commit();
 
-        Set<SysEntityPermission> permissionsResultSet = new HashSet<SysEntityPermission>(result.size());
+        Set<BaseEntityPermission> permissionsResultSet = new HashSet<BaseEntityPermission>(result.size());
         for (Object[] line : result) {
-            permissionsResultSet.add(new SysEntityPermission(
+            permissionsResultSet.add(new BaseEntityPermission(
                     (String) line[0],
                     Short.valueOf(line[1].toString()),
                     Short.valueOf(line[2].toString()),
@@ -187,11 +185,11 @@ public class BaseUser extends BaseEntity {
         return (BaseUser) result.get(0);
     }
 
-    public Set<SysGroup> getGroups() {
+    public Set<BaseGroup> getGroups() {
         return groups;
     }
 
-    public void setGroups(Set<SysGroup> groups) {
+    public void setGroups(Set<BaseGroup> groups) {
         this.groups = groups;
     }
 
@@ -243,13 +241,39 @@ public class BaseUser extends BaseEntity {
         this.password = password;
     }
 
-    public int getActive() {
+    public Boolean getActive() {
         return active;
     }
 
-    public void setActive(int active) {
+    public void setActive(Boolean active) {
         this.active = active;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+    
+    
 
     @Override
     public String toString() {

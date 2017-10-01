@@ -42,7 +42,7 @@ public class HibernateUtil {
             //Load properties from db.properties file
             InputStream input = null;
             try {
-                input = new FileInputStream(".\\db.properties");
+                input = new FileInputStream(".\\src\\db.properties");
                 // load a properties file
                 p.load(input);
                 // get the property value and print it out

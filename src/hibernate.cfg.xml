@@ -5,11 +5,11 @@
         
         <mapping class="entity.BaseEntity"/>       
         <mapping class="entity.BaseUser"/> 
-        <mapping class="entity.HisLogin"/>
-        <mapping class="entity.SysGroup"/> 
-        <mapping class="entity.SysEntityPermission"/>
-        <mapping class="entity.SysMenu"/>
-        <mapping class="entity.SysView"/>
+        <mapping class="entity.BaseLoginHistory"/>
+        <mapping class="entity.BaseGroup"/> 
+        <mapping class="entity.BaseEntityPermission"/>
+        <mapping class="entity.BaseMenu"/>
+        <mapping class="entity.BaseView"/>
         <!--
         <mapping class="entity.Example"/> 
         -->

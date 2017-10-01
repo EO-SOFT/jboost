@@ -1,0 +1,6 @@
+Oct 01, 2017 1:25:10 PM helper.Bootstrap InitDailyDestPrintDir
+INFO: Print directory [.\print\2017_10_01] is created!
+
+Oct 01, 2017 3:47:11 PM helper.Bootstrap InitDailyDestPrintDir
+INFO: Print directory [.\print\2017_10_01] already exist!
+

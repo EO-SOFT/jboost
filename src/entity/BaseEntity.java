@@ -63,7 +63,7 @@ public class BaseEntity implements Serializable {
      * or false otherwise.
      */
     public boolean checkAccessToEntity(String entityName, BaseUser user, char operation) {
-        for (SysEntityPermission en : user.getEntityPermissions()) {
+        for (BaseEntityPermission en : user.getEntityPermissions()) {
             switch (operation) {
                 case 'C':
                     if (en.getEntity().equals(entityName) && en.canCreate() == 1) {
@@ -100,7 +100,7 @@ public class BaseEntity implements Serializable {
      * otherwise.
      */
     public boolean checkAccessToMenu(String menu, BaseUser user) {
-        for (SysMenu en : user.getMenuPermissions()) {
+        for (BaseMenu en : user.getMenuPermissions()) {
             if (en.getMenu().equals(menu)) {
                 return true;
             }
@@ -117,7 +117,7 @@ public class BaseEntity implements Serializable {
      * otherwise.
      */
     public boolean checkAccessToView(String view, BaseUser user) {
-        for (SysView en : user.getViewPermissions()) {
+        for (BaseView en : user.getViewPermissions()) {
             if (en.getFxml_path().equals(view)) {
                 return true;
             }
